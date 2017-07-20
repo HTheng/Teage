@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TeageModelStoreContainer" CdmEntityContainer="TeageEntities">
+    <EntitySetMapping Name="Captcha">
+      <EntityTypeMapping TypeName="TeageModel.Captcha">
+        <MappingFragment StoreEntitySet="Captcha">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comment">
+      <EntityTypeMapping TypeName="TeageModel.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Substance" ColumnName="Substance" />
+          <ScalarProperty Name="ExpressId" ColumnName="ExpressId" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Express">
+      <EntityTypeMapping TypeName="TeageModel.Express">
+        <MappingFragment StoreEntitySet="Express">
+          <ScalarProperty Name="PickDestination" ColumnName="PickDestination" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="Money" ColumnName="Money" />
+          <ScalarProperty Name="ExpectTime" ColumnName="ExpectTime" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="HamalUserID" ColumnName="HamalUserID" />
+          <ScalarProperty Name="ReleaseTime" ColumnName="ReleaseTime" />
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="ExpressName" ColumnName="ExpressName" />
+          <ScalarProperty Name="ExpressPwd" ColumnName="ExpressPwd" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Zy" ColumnName="Zy" />
+          <ScalarProperty Name="Payway" ColumnName="Payway" />
+          <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExpressCal">
+      <EntityTypeMapping TypeName="TeageModel.ExpressCal">
+        <MappingFragment StoreEntitySet="ExpressCal">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="Zy" ColumnName="Zy" />
+          <ScalarProperty Name="ExpressID" ColumnName="ExpressID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExpressType">
+      <EntityTypeMapping TypeName="TeageModel.ExpressType">
+        <MappingFragment StoreEntitySet="ExpressType">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="TeageModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInfo">
+      <EntityTypeMapping TypeName="TeageModel.UserInfo">
+        <MappingFragment StoreEntitySet="UserInfo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPass" ColumnName="UserPass" />
+          <ScalarProperty Name="RegTime" ColumnName="RegTime" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInfoRole">
+      <EntityTypeMapping TypeName="TeageModel.UserInfoRole">
+        <MappingFragment StoreEntitySet="UserInfoRole">
+          <ScalarProperty Name="UserInfo_ID" ColumnName="UserInfo_ID" />
+          <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="TeageModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+          <ScalarProperty Name="LoginPwd" ColumnName="LoginPwd" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="vMoney" ColumnName="vMoney" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="RegTime" ColumnName="RegTime" />
+          <ScalarProperty Name="UserStateId" ColumnName="UserStateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersAddress">
+      <EntityTypeMapping TypeName="TeageModel.UsersAddress">
+        <MappingFragment StoreEntitySet="UsersAddress">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserStates">
+      <EntityTypeMapping TypeName="TeageModel.UserStates">
+        <MappingFragment StoreEntitySet="UserStates">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

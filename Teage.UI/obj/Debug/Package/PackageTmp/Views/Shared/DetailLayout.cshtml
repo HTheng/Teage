@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    @*<link href="~/Common/mui/dist/css/sm.css" rel="stylesheet" />*@
+    @*<link href="~/Common/mui/dist/css/sm-extend.css" rel="stylesheet" />*@
+    @*<link href="~/Common/mui/docs/assets/css/docs.css" rel="stylesheet" />*@
+    @*<link href="~/Common/mui/docs/assets/css/demos.css" rel="stylesheet" />*@
+    @*<link rel="apple-touch-icon-precomposed" href="/assets/img/apple-touch-icon-114x114.png">*@
+
+    @*<script src="~/Common/mui/docs/assets/js/zepto.js"></script>
+        <script src="~/Common/mui/dist/js/sm.js"></script>*@
+
+    @*<script src="~/Common/mui/docs/assets/js/config.js"></script>*@
+    @*<link href="~/Common/demo/css/style.css" rel="stylesheet" />
+        <link href="~/Common/demo/css/amazeui.min.css" rel="stylesheet" />
+        <link href="~/Common/demo/css/wap.css" rel="stylesheet" />*@
+
+    <link href="~/Common/mui/dist/css/sm.css" rel="stylesheet" />
+
+    <link href="~/Common/mui/dist/css/sm-extend.css" rel="stylesheet" />
+    <link href="~/Common/mui/docs/assets/css/demos.css" rel="stylesheet" />
+
+    @*<link href="~/Common/mui/docs/assets/css/docs.css" rel="stylesheet" />*@
+    <script src="~/Common/mui/docs/assets/js/zepto.js"></script>
+    <script src="~/Common/mui/dist/js/sm.js"></script>
+
+    @*<link href="~/Common/demo/css/style.css" rel="stylesheet" />*@
+    <link href="~/Common/demo/css/amazeui.min.css" rel="stylesheet" />
+    <link href="~/Common/demo/css/wap.css" rel="stylesheet" />
+
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?ba76f8230db5f616edc89ce066670710";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    @RenderSection("head", false)
+</head>
+<body>
+    <div class="page-group">
+        <div id="page-nav-bar" class="page">
+            <header class="bar bar-nav">
+                @*<a class="button button-link button-nav pull-left back" href="@ViewBag.Url">
+                        <span class="icon icon-left"></span>
+                        返回
+                    </a>*@
+                <h1 class="title">@ViewBag.Title</h1>
+            </header>
+            <nav class="bar bar-tab">
+                <a class="tab-item external active" href="/Home/Index">
+                    <span class="icon icon-home"></span>
+                    <span class="tab-label">优递</span>
+                </a>
+                <a class="tab-item external" href="/Main/Express/Index">
+                    <span class="icon icon-star"></span>
+                    <span class="tab-label">任务</span>
+                </a>
+                <a class="tab-item external" href="#">
+                    <span class="icon icon-message"></span>
+                    <span class="tab-label">好友</span>
+                    <span class="badge">2</span>
+                </a>
+                <a class="tab-item external open-panel" data-panel=".panel-left">
+                    <span class="icon icon-me"></span>
+                    <span class="tab-label">我的</span>
+                </a>
+            </nav>
+            @RenderBody()
+        </div>
+    </div>
+
+    <div class="panel-overlay"></div>
+    <div class="panel panel-left panel-reveal">
+        <div class="content-block">
+            <p style="padding-right: 5px; margin-top: 10px;"><a href="#" class="close-panel" style="color: #0e90d2">关闭</a></p>
+            <div align="center">
+                <img src="~/Common/mui/img/i-f7.png" width="80" height="80" />
+            </div>
+            <p style="text-align: center; color: #f3f3f5;font-family:'黑体';height:3px;">张三</p>
+            <p style="text-align:center;margin-top:5px;">137505515158</p>
+            <div style="color: #f3f3f5; font-family: '黑体'; ">
+                <ul>
+                    <li class="icon icon-home" style="margin-left:35px;margin-top:20px;">&nbsp;&nbsp;<a href="/Main/User/Index">个人主页</a></li>
+                    <li class="icon icon-me" style="margin-left: 35px; margin-top: 20px; ">&nbsp;&nbsp;<a href="/Main/User/Identity">身份认证</a></li>
+                    <li class="icon icon-share" style="margin-left: 35px; margin-top: 20px; ">&nbsp;&nbsp;<a href="/Main/User/Money">零&nbsp;&nbsp;钱</a></li>
+                    <li class="icon icon-settings" style="margin-left: 35px; margin-top: 20px; ">&nbsp;&nbsp;<a href="/Main/User/Setting">设&nbsp;&nbsp;置</a></li>
+                </ul>
+            </div>
+            <p style="position:absolute;bottom:10px;text-align:center;width:87%;font-size:25px;">退出</p>
+        </div>
+    </div>
+    <div class="panel panel-right panel-cover">
+        <div class="content-block">
+            <p>这是右侧栏，panel-cover模式</p>
+            <p></p>
+            <!-- Click on link with "close-panel" class will close panel -->
+            <p><a href="#" class="close-panel">关闭</a></p>
+        </div>
+    </div>
+
+    @*<script src="~/Common/mui/dist/js/sm.js"></script>
+        <script src="~/Common/mui/dist/js/sm-extend.js"></script>
+        <script src="~/Common/mui/dist/js/sm-city-picker.js"></script>
+        <script src="~/Common/mui/docs/assets/js/demos.js"></script>*@
+    <script src="~/Common/demo/js/jquery.min.js"></script>
+    <script src="~/Common/demo/js/jquery.cookie.js"></script>
+</body>
+</html>

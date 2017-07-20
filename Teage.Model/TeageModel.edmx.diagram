@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="27e694e3b8fd4bb2b87aec85bb6a69ff" Name="Diagram1">
+        <EntityTypeShape EntityType="TeageModel.Captcha" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeageModel.Comment" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeageModel.Express" Width="1.5" PointX="8.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeageModel.ExpressCal" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeageModel.ExpressType" Width="1.5" PointX="6" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeageModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeageModel.UserInfo" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeageModel.UserInfoRole" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeageModel.Users" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeageModel.UsersAddress" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeageModel.UserStates" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="TeageModel.FK_Comment_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TeageModel.FK_Express_ExpressType" ManuallyRouted="false" />
+        <AssociationConnector Association="TeageModel.FK_Express_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TeageModel.FK_ExpressCal_Express" ManuallyRouted="false" />
+        <AssociationConnector Association="TeageModel.FK_Users_UserStates" ManuallyRouted="false" />
+        <AssociationConnector Association="TeageModel.FK_UsersAddress_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,183 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Indexs</title>
+    <link href="~/Common/mui/dist/css/sm.css" rel="stylesheet" />
+
+    <link href="~/Common/mui/dist/css/sm-extend.css" rel="stylesheet" />
+    <link href="~/Common/mui/docs/assets/css/demos.css" rel="stylesheet" />
+
+    <script src="~/Common/mui/docs/assets/js/zepto.js"></script>
+    <script src="~/Common/layer/layer_mobile/layer.js"></script>
+    <script src="~/Common/mui/dist/js/sm.js"></script>
+    <script type="text/javascript">
+        $("body").keydown(function (event) {
+            if (event.keyCode == "13") {//keyCode=13是回车键
+                $('#loginBtn').click();
+            }
+        });
+        function Submit() {
+            var flag = check();
+            if (flag) {
+                $.ajax({
+                    url: "@ViewBag.api/api/Users/User/Login",
+                    type: "post",
+                    dataType: 'json',
+                    //data: $("#addFrm").serialize(),
+                    data: { Phone: $("#name").val(), Captcha: $("#pwd").val() },
+                    success: function (data) {
+                        if (data.Meta.ErrorMsg == "success" || data.Meta.ErrorMsg == null) {
+                            $.cookie("Token", data.Body.Token, { expires: 7, path: '/' });
+                            var url = '@ViewBag.Url';
+                            if (url != "" && url != "/Login/Index") {
+                                window.location.href = url;
+                            }
+                            else {
+                                window.location.href = "/Home/Index";
+                            }
+                        } else {
+                            alert(data.Meta.ErrorMsg);
+                        }
+                    }
+                });
+            }
+        }
+        //校验数据
+        function check() {
+            if ($("#name").val() == "" || $("#name").val() == null) {
+                layer.open({
+                    content: '请输入您的用户名'
+                    , skin: 'msg'
+                    , time: 2 //2秒后自动关闭
+                });
+                return false;
+            }
+            if ($("#pwd").val() == "" || $("#pwd").val() == null) {
+                layer.open({
+                    content: '请输入您的验证码'
+                   , skin: 'msg'
+                   , time: 2 //2秒后自动关闭
+                });
+                return false;
+            }
+            return true;
+        }
+
+    </script>
+</head>
+<body>
+    <div class="page-group">
+        <div id="page-label-input" class="page">
+            <header class="bar bar-nav">
+                <a class="button button-link button-nav pull-left back" href="/Home/Index">
+                    <span class="icon icon-left"></span>
+                    返回
+                </a>
+                <h1 class="title">用户登录</h1>
+            </header>
+            <nav class="bar bar-tab">
+                <a class="tab-item external active" href="/Home/Index">
+                    <span class="icon icon-home"></span>
+                    <span class="tab-label">优递</span>
+                </a>
+                <a class="tab-item external" href="/Main/Express/Indexes">
+                    <span class="icon icon-star"></span>
+                    <span class="tab-label">任务</span>
+                </a>
+                <a class="tab-item external" href="#">
+                    <span class="icon icon-message"></span>
+                    <span class="tab-label">好友</span>
+                    <span class="badge">2</span>
+                </a>
+                <a class="tab-item external open-panel" data-panel=".panel-left">
+                    <span class="icon icon-me"></span>
+                    <span class="tab-label">我的</span>
+                </a>
+            </nav>
+
+            @*<div class="cart-panel">
+                    <div class="am-form-group am-form-icon">
+                        <i class="am-icon-phone" style="color:#f09513"></i>
+                        <input id="name" type="text" class="am-form-field  my-radius" placeholder="11位手机号码">
+                    </div>
+                    <div class="am-form-group am-form-icon">
+                        <i class="am-icon-envelope" style="color:#78c3ca"></i>
+                        <input id="pwd" name="Captcha" class="am-form-field  my-radius" type="text" placeholder="4位短信验证码">
+                    </div>
+                    <div>
+                        <div id="verificationcode" style="color:#9bc13c;text-align:right;">
+                            发送验证码
+                        </div>
+                    </div>
+                    <p class="am-text-center"><button id="loginBtn" type="submit" class="am-btn am-btn-danger am-radius am-btn-block" onclick="Submit()">立即登录</button></p>
+
+                </div>*@
+            <div class="content">
+                <div class="list-block">
+                    <ul>
+                        <!-- Text inputs -->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">用户名</div>
+                                    <div class="item-input">
+                                        <input id="name" type="text" class="am-form-field  my-radius" placeholder="11位手机号码">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">验证码</div>
+                                    <div class="item-input">
+                                        <input id="pwd" name="Captcha" class="am-form-field  my-radius" type="text" placeholder="4位短信验证码">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <script type="text/javascript">
+                    //15分钟内不能重复发验证码
+                    var time = 0;
+                    //单击验证码事件
+                    $("#verificationcode").click(function () {
+                        $.post("@ViewBag.api/api/Captcha/Captcha/SendCaptcha", { "Type": 3, "Phone": $("#name").val() }, function (data) {
+                            if (data.Meta.ErrorCode == "") {
+                                document.getElementById('verificationcode').style.color == "block";
+                                time = 15;
+                            } else {
+                                layer.open({
+                                    content: data.Meta.ErrorMsg,
+                                    skin: 'msg',
+                                    time: 2
+                                });
+                                return false;
+                            }
+                        });
+                    });
+                </script>
+                <div class="content-block">
+                    <div class="row">
+                        <div class="col-50"><a href="#" class="button button-big button-fill button-danger">取消</a></div>
+                        <div class="col-50"><a href="#" class="button button-big button-fill button-success" onclick="Submit()">立即登录</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Common/mui/dist/js/sm.js"></script>
+    <script src="~/Common/mui/dist/js/sm-extend.js"></script>
+    <script src="~/Common/mui/dist/js/sm-city-picker.js"></script>
+    <script src="~/Common/mui/docs/assets/js/demos.js"></script>
+    <script src="~/Common/demo/js/jquery.min.js"></script>
+    <script src="~/Common/demo/js/jquery.cookie.js"></script>
+</body>
+</html>

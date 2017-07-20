@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "用户注册";
+    Layout = "~/Views/Shared/LayoutMaster.cshtml";
+}
+@section head{
+    <link href="~/Common/demo/css/amazeuione.min.css" rel="stylesheet" />
+    <link href="~/Common/demo/css/style.css" rel="stylesheet" />
+    <link href="~/Common/demo/css/wap.css" rel="stylesheet" />
+    <script src="~/Common/demo/js/jquery.min.js"></script>
+    <script src="~/Common/demo/js/amazeui.min.js"></script>
+    <script src="~/Common/Js/Extjs/js.js"></script>
+    <script type="text/javascript">
+        function Submit() {
+            var flag = check();
+            if(flag)
+            {
+                $.ajax({
+                    url: "@ViewBag.api/api/User/Reg",
+                    type: "post",
+                    dataType: 'json',
+                    //data: $("#addFrm").serialize(),
+                    data: { LoginName: $("#name").val(), Loginpwd: $("#pwd").val(), mail: $("#mail").val(), phone: $("#phone").val() },
+                    success: function (data) {
+                        if (data.Meta.ErrorCode != "0") {
+                            alert(data.Meta.ErrorMsg);
+                        } else {
+                            alert(data.Meta.ErrorMsg);
+                        }
+                    }
+                });
+            }
+        }
+        //校验数据
+        function check() {
+            if ($("#name").val() == "" || $("#name").val() == null) {
+                alert("请输入您的用户名");
+                return false;
+            }
+            if ($("#pwd").val() == "" || $("#pwd").val() == null) {
+                alert("请输入您的密码");
+                return false;
+            }
+            if ($("#pwd2").val() == "" ||$("#pwd2").val() == null) {
+                alert("请重复输入一次密码");
+                return false;
+            }
+            if ($("#pwd").val() != $("#pwd2").val()) {
+                alert("密码与二次密码不匹配");
+                return false;
+            }
+            if ($("#mail").val() == "" || $("#mail").val() == null) {
+                alert("请输入邮箱号码");
+                return false;
+            }
+            if ($("#phone").val() == "" || $("#phone").val() == null) {
+                alert("请输入联系电话");
+                return false;
+            }
+            return true;
+        }
+    </script>
+}
+<div class="container">
+
+    <div id="addFrm" class="cart-panel">
+        @*<form class="am-form">*@
+        <div class="am-form-group am-form-icon">
+            <i class="am-icon-user" style="color:#329cd9"></i>
+            <input type="text" id="name" name="LoginName" class="am-form-field  my-radius" placeholder="请输入您的用户名">
+        </div>
+        <div class="am-form-group am-form-icon">
+            <i class="am-icon-lock" style="color:#329cd9"></i>
+            <input type="password" id="pwd" name="LoginPwd" class="am-form-field  my-radius" placeholder="请输入您的密码">
+        </div>
+        <div class="am-form-group am-form-icon">
+            <i class="am-icon-lock" style="color:#e9c740"></i>
+            <input type="password" id="pwd2" class="am-form-field  my-radius" placeholder="请重复输入一次密码">
+        </div>
+        <div class="am-form-group am-form-icon">
+            <i class="am-icon-envelope" style="color:#78c3ca"></i>
+            <input type="text" id="mail" name="Mail" class="am-form-field  my-radius" placeholder="请输入邮箱号码">
+        </div>
+        <div class="am-form-group am-form-icon">
+            <i class="am-icon-phone" style="color:#f09513"></i>
+            <input type="text" id="phone" name="Phone" class="am-form-field  my-radius" placeholder="请输入联系电话">
+        </div>
+        <div class="am-checkbox">
+            <label>
+                <input id="ck" type="checkbox"> 我已阅读并同意<a href="#">《协议》</a>
+            </label>
+        </div>
+        <p class="am-text-center"><button type="submit" class="am-btn am-btn-danger am-radius am-btn-block" onclick="Submit()">立即注册</button></p>
+        @*</form>*@
+    </div>
+
+</div>
+
+

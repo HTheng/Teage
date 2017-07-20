@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/LayoutMaster.cshtml";
+}
+@section head{
+    <script src="~/Common/demo/js/jquery.min.js"></script>
+    <script src="~/Common/demo/js/amazeui.min.js"></script>
+}
+<br />
+<br /> 
+<div class="gray-panel">
+    <div class="paoduct-title-panel">
+        <h2 class="checkout-h2"><span class="am-badge am-round am-badge-warning ">1</span> 确认订单信息</h2>
+        <div class="cart-list-panel">
+            <ul class="am-avg-sm-1 cart-panel-ul">
+                <li>
+                    <div class="imgpanel"><a href="#"><img src="~/Common/demo/img/ud.jpg" class="am-img-responsive" /></a></div>
+                    <div class="infopanel">
+                        <h3><a href="#">450ml柔顺丰盈护发素正品</a></h3>
+                        <p>取货地址：乔治卡罗尔</p>
+                        <p>取货密码：乔治卡罗尔</p>
+                        <p>手机号码：乔治卡罗尔</p>
+                        <p>优递费用：<span class="red2 bold">3.00</span> 元 &nbsp;&nbsp;&nbsp; 积分：<span class="red2 bold">1</span></p>
+                        <p>运费期望时间< 元</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="cart_foot">共<span class="red2 bold" id="total_good">1</span>件商品；总价：<span class="red2 bold" id="total_amount">3</span>元；总积分：<span class="red2 bold" id="total_jifen">1</span>积分</div>
+        <div class="cart-tool">
+            @*<a class="am-btn am-btn-sm am-btn-success am-radius" href="shoppingcart.html">
+                <i class="am-icon-chevron-left"></i>
+                返回购物车
+            </a>*@
+        </div>
+    </div>
+    <div class="my-search-title-panel am-text-sm am-margin-bottom-sm"><i class="am-icon-lightbulb-o am-text-danger"></i> 提示：实际的运费可能因为收货地址的不同而有差异，具体以提交之后系统计算或卖家协商为准</div>
+
+    <div class="paoduct-title-panel">
+        <h2 class="checkout-h2"><span class="am-badge am-round am-badge-warning ">2</span> 支付方式</h2>
+        <ul class="am-list am-text-sm my-pay-ul">
+            <li><a href="javascript:;" rel="1" class="hover"><span class="am-fr"><i class="am-icon-check-circle"></i>&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;<img src="~/Common/demo/img/wechat.png" class="payimg" />&nbsp;&nbsp;&nbsp;&nbsp;微信支付</a></li>
+            <li><a href="javascript:;" rel="2"><span class="am-fr"><i class="am-icon-circle-thin"></i>&nbsp;&nbsp;</span><img src="~/Common/demo/img/alipay.png" class="payimg" /> 支付宝支付</a></li>
+            <li><a href="javascript:;" rel="3"><span class="am-fr"><i class="am-icon-circle-thin"></i>&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;<img src="~/Common/demo/img/money.png" class="payimg" />&nbsp;&nbsp;&nbsp;&nbsp;余额支付 &nbsp;&nbsp; <samll class="my-pay-yue">金币余额：<span class="red2">1001</span>  &nbsp;&nbsp;<span onclick="window.location.href='#'" class="red2">充值</span></samll></a></li>
+        </ul>
+        <script>
+            $(document).ready(function (e) {
+                $(".my-pay-ul li > a").click(function () {
+                    $(".my-pay-ul li > a").removeClass('hover');
+                    $(".my-pay-ul li > a i").removeClass('am-icon-check-circle').addClass('am-icon-circle-thin');
+                    $(this).addClass('hover');
+                    var val = $(this).attr('rel');
+                    $("#paytype").val(val);
+                    $(this).find('i').removeClass('am-icon-circle-thin').addClass('am-icon-check-circle');
+
+
+                });
+            });
+        </script>
+        <div>
+            <ul class="am-avg-sm-2 am-text-center">
+                <li class="am-text-center am-padding-sm"><button type="button" class="am-btn am-btn-danger am-btn-block am-radius">取消</button></li>
+                <li class="am-text-center am-padding-sm"><button type="button" class="am-btn am-btn-success am-btn-block am-radius">确定提交</button></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+

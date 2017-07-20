@@ -1,0 +1,156 @@
+﻿@{
+    ViewBag.Title = "Indexss";
+    Layout = "~/Views/Shared/DetailLayout.cshtml";
+    //Layout = "~/Views/Shared/LayoutMaster.cshtml";
+}
+@section head{
+    @*<link href="~/Common/mui/dist/css/sm.css" rel="stylesheet" />
+    <link href="~/Common/mui/docs/assets/css/docs.css" rel="stylesheet" />
+    <link href="~/Common/layer/layer_mobile/need/layer.css" rel="stylesheet" />*@
+    @*<link href="~/Common/demo/css/amazeui.min.css" rel="stylesheet" />
+        <link href="~/Common/demo/css/wap.css" rel="stylesheet" />*@
+    @*<script src="~/Common/demo/js/amazeui.min.js"></script>
+    <script src="~/Common/mui/docs/assets/js/zepto.js"></script>
+    <script src="~/Common/mui/dist/js/sm.js"></script>
+    <script src="~/Common/layer/layer_mobile/layer.js"></script>*@
+
+    @*<script src="~/Common/mui/docs/assets/js/zepto.js"></script>
+    <script src="~/Common/mui/dist/js/sm.js"></script>
+    <script src="~/Common/mui/dist/js/sm-extend.js"></script>
+    <script src="~/Common/mui/dist/js/sm-city-picker.js"></script>
+    <script src="~/Common/mui/docs/assets/js/docs.js"></script>
+    <script src="~/Common/layer/layer_mobile/layer.js"></script>*@
+    <script type="text/javascript">
+        $(function () {
+            var token = $.cookie('Token');
+            $("#Token").val(token);
+            UD(1);
+        });
+        function getDate(nS) {
+            return nS.replace("T", "  ");
+        }
+        function UD(flag) {
+            $.ajax({
+                url: "@ViewBag.api/api/Express/Express/List",
+                type: "post",
+                dataType: 'json',
+                //data: $("#addFrm").serialize(),
+                data: { Token: $("#Token").val(), flag: flag },
+                success: function (data) {
+                    if (data.Meta.ErrorMsg == "success" || data.Meta.ErrorMsg == null) {
+                        var serverData = data.Body.Models;
+                        //删除li
+                        if (serverData.length > 0) {
+
+                            $('ul.am-list').html("");
+                            for (var i = 0; i < serverData.length; i++) {
+                                if (serverData[i].TypeID == 0) {
+                                    $(" <li class='am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-right pet_hd_list'><a href='/Main/Express/About?ID=" + serverData[i].ID + "&flag=" + flag + "&type=0' class='pet_hd_block'><div class='pet_hd_block_title'>" + serverData[i].ExpressName + "</div><div class='pet_hd_block_map'><i class='iconfont'>&#xe632;</i>" + serverData[i].Destination + "</div><div class='pet_hd_block_map'>&nbsp;支付额度：&nbsp;&nbsp;&nbsp;<span class='red2 bold'>￥" + serverData[i].Money + "</span></div><div class='pet_hd_block_tag'><span class='hd_tag_jh'>待派送</span> " + getDate(serverData[i].ExpectTime) + "</div></a></li>").appendTo("#u" + flag + "");
+                                } else if (serverData[i].TypeID == 1) {
+                                    $(" <li class='am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-right pet_hd_list'><a href='/Main/Express/About?ID=" + serverData[i].ID + "&flag=" + flag + "&type=1' class='pet_hd_block'><div class='pet_hd_block_title'>" + serverData[i].ExpressName + "</div> <div class='pet_hd_block_map'><i class='iconfont'>&#xe632;</i>" + serverData[i].Destination + "</div><div class='pet_hd_block_map'>&nbsp;支付额度：&nbsp;&nbsp;&nbsp;<span class='red2 bold'>￥" + serverData[i].Money + "</span></div><div class='pet_hd_block_tag'><span class='pet_hd_block_tag'>派送中</span> " + getDate(serverData[i].ExpectTime) + "</div></a></li>").appendTo("#u" + flag + "");
+                                } else if (serverData[i].TypeID == 2) {
+                                    $(" <li class='am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-right pet_hd_list'><a href='/Main/Express/About?ID=" + serverData[i].ID + "&flag=" + flag + "&type=2' class='pet_hd_block'><div class='pet_hd_block_title'>" + serverData[i].ExpressName + "</div><div class='pet_hd_block_map'>&nbsp;支付额度：&nbsp;&nbsp;&nbsp;<span class='red2 bold'>￥" + serverData[i].Money + "</span></div><div class='pet_hd_block_map'><i class='iconfont'>&#xe632;</i>" + serverData[i].Destination + "</div><div class='pet_hd_block_tag'><span class='hd_tag_sd'>已送达</span> " + getDate(serverData[i].ExpectTime) + "</div></a></li>").appendTo("#u" + flag + "");
+                                }
+                                else if (serverData[i].TypeID == 3) {
+                                    $(" <li class='am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-right pet_hd_list'><a href='/Main/Express/About?ID=" + serverData[i].ID + "&flag=" + flag + "&type=3' class='pet_hd_block'><div class='pet_hd_block_title'>" + serverData[i].ExpressName + "</div><div class='pet_hd_block_map'>&nbsp;支付额度：&nbsp;&nbsp;&nbsp;<span class='red2 bold'>￥" + serverData[i].Money + "</span></div><div class='pet_hd_block_map'><i class='iconfont'>&#xe632;</i>" + serverData[i].Destination + "</div><div class='pet_hd_block_tag'><span class='hd_tag_js'>已关闭</span> " + getDate(serverData[i].ExpectTime) + "</div></a></li>").appendTo("#u" + flag + "");
+                                }
+                            }
+                        }
+                    } else if (data.Meta.ErrorCode == "2") {
+                        layer.open({
+                            content: '请先登录！',
+                            height: 30,
+                            btn: '确定',
+                            shadeClose: false,
+                            yes: function () {
+                                window.location.href = "/Login/Index";
+                            }
+                        });
+                    }
+                    else {
+                        layer.open({
+                            content: data.Meta.ErrorMsg,
+                            height: 30,
+                            btn: '确定',
+                            shadeClose: false,
+                            yes: function () {
+
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        //对 派送中  进行确认 ，对已送达 显示一个 该优递从生到死的显示
+        function open(ID, flag) {
+            alert(flag);
+            //对 派送中 进行确认
+            if (flag == 2) {
+                layer.open({
+                    title: [
+                      '是否确认送达',
+                      'background-color:#8DCE16; color:#fff;'
+                    ],
+                    anim: 'up',
+                    content: '展现的是全部结构',
+                    btn: ['确认', '取消']
+                });
+                @*layer.open({
+                    content: "是否确认送达",
+                    height: 30,
+                    btn: ['确认', '放弃配送', '取消', ],
+                    shadeClose: false,
+                    yes: function () {
+                        $.post("@ViewBag.api/api/Express/Express/Edit", { "ID": ID, "flag": flag }, function (data) { }, 'json')
+                    },
+                    no: function () {
+
+                    }
+                });*@
+            } else if (type == 3) {
+
+            }
+        }
+    </script>
+}
+<div>
+    <div class="content">
+
+        <header class="bar bar-nav">
+            <a class="button button-link button-nav pull-left back" href="/Main/Express/Index">
+                <span class="icon icon-left"></span>
+                返回
+            </a>
+            <h1 class='title'>发起快递</h1>
+        </header>
+        <br />
+        <br />
+        <div class="buttons-tab">
+            <a id="#tab1" href="#tab1" class="tab-link active button" onclick="UD(1)">优递广场</a>
+            <a id="#tab2" href="#tab2" class="tab-link  button" onclick="UD(2)">我发起的优递</a>
+            <a id="#tab3" href="#tab3" class="tab-link button" onclick="UD(3)">我拿到的优递</a>
+        </div>
+        <div class="content-block">
+            <div class="tabs">
+                <div id="tab1" class="tab active">
+                    <div class="am-list-news-bd">
+                        <ul id="u1" class="am-list"></ul>
+                    </div>
+
+                </div>
+                <div id="tab2" class="tab">
+                    <div class="am-list-news-bd">
+                        <ul id="u2" class="am-list"></ul>
+                    </div>
+                </div>
+                <div id="tab3" class="tab">
+                    <div class="am-list-news-bd">
+                        <ul id="u3" class="am-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="Token" id="Token" value="" />
+    </div>
+</div>
+

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <sms>
+    <message name="captcha">
+      <content>您申请的验证码为{0}，有效期为5分钟，如果不是您发送的，请忽略本条消息</content>
+    </message>
+  </sms>
+  <descrption>
+    <message name="RechargeDescrption">
+      <content>充值说明：本充值金额主要用于电话咨询费用，不可退款，不可提现，不可向第三方进行转让、出售、过户、抵押或用来提供其他担保等。若有问题，请联系客服4000-086-056。</content>
+    </message>
+  </descrption>
+</root>

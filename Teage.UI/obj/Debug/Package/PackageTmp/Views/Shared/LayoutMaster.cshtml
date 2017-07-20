@@ -1,0 +1,110 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link href="~/Common/mui/dist/css/sm.css" rel="stylesheet" />
+    <link href="~/Common/mui/docs/assets/css/docs.css" rel="stylesheet" />
+    <script src="~/Common/mui/docs/assets/js/zepto.js"></script>
+    <script src="~/Common/mui/dist/js/sm.js"></script>
+
+    <link href="~/Common/demo/css/style.css" rel="stylesheet" />
+    <link href="~/Common/demo/css/amazeui.min.css" rel="stylesheet" />
+    <link href="~/Common/demo/css/wap.css" rel="stylesheet" />
+    <script>
+        function CheckOut() {
+            $.cookie("Token", null, { expires: 7, path: '/' });
+            window.location.href = "/Login/Index";
+        }
+    </script>
+    @RenderSection("head", false)
+
+</head>
+<body>
+    <div class="pet_head">
+        <header data-am-widget="header" class="am-header am-header-default my-header">
+            <div class="am-header-left am-header-nav">
+                <a href="#left-link" class="">
+                    <i class="am-header-icon am-icon-chevron-left"></i>
+                </a>
+            </div>
+            <h1 class="am-header-title">
+                <a href="#title-link" class="">@ViewBag.Title</a>
+            </h1>
+                        @*<div class="am-header-right am-header-nav">
+                            <a href="javascript:;" class="iconfont pet_head_gd_ico">&#xe600;</a>
+        <a href="~/Areas/Main/Controllers/SendController.cs">~/Areas/Main/Controllers/SendController.cs</a>
+                        </div>*@
+        </header>
+    </div>
+    @RenderBody()
+    @*<div class="pet_article_dowload pet_dowload_more_top_off" style="display:none;">
+            <div class="pet_article_dowload_title">关于Amaze UI</div>
+            <div class="pet_article_dowload_content pet_dowload_more_top_bg">
+                <div class="pet_article_dowload_triangle pet_dowload_more_top_san"></div>
+                <div class="pet_article_dowload_ico"><img src="~/Common/demo/img/footdon.png" alt=""></div>
+                <div class="pet_article_dowload_content_font">
+                    Amaze UI 以移动优先（Mobile first）为理念，从小屏逐步扩展到大屏，最终实现所有屏幕适配，适应移动互联潮流。
+                </div>
+                <div class="pet_article_dowload_all">
+                    <a href="###" class="pet_article_dowload_Az am-icon-apple"> App store</a>
+                    <a href="###" class="pet_article_dowload_Pg am-icon-android"> Android</a>
+                </div>
+            </div>
+            <div class="pet_article_footer_info">Copyright(c)2015 Amaze UI All Rights Reserved</div>
+        </div>*@
+
+    <!--底部-->
+    <div data-am-widget="navbar" class="am-navbar am-cf my-nav-footer" id="">
+        <ul class="am-navbar-nav am-cf am-avg-sm-4 my-footer-ul">
+            <li>
+                <a href="/Home/Index" class="">
+                    <span class="am-icon-home"></span>
+                    <span class="am-navbar-label">优递</span>
+                </a>
+            </li>
+            <li>
+                <a href="/Main/Express/Index" class="">
+                    <span class=" am-icon-map-marker"></span>
+                    <span class="am-navbar-label">任务</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="">
+                    <span class=" am-icon-comments"></span>
+                    <span class="am-navbar-label">好友</span>
+                </a>
+            </li>
+            <li style="position:relative">
+                <a href="javascript:;" onclick="showFooterNav();" class="">
+                    <span class="am-icon-user"></span>
+                    <span class="am-navbar-label">我的</span>
+                </a>
+
+
+                <div class="footer-nav" id="footNav">
+                    <span class=" am-icon-bank"><a href="#">买家中心</a></span>
+                    <span class="am-icon-suitcase"><a href="#">卖家中心</a></span>
+                    <span class="am-icon-usd"><a href="#">我的钱包</a></span>
+                    <span class="am-icon-user"><a href="#">个人资料</a></span>
+                    <span class="am-icon-th-list"><a href="#">帮助中心</a></span>
+                    <span class="am-icon-comments"><a href="#">消息中心</a></span>
+                    <span class="am-icon-power-off"><a onclick="CheckOut()">安全退出</a></span>
+                </div>
+            </li>
+        </ul>
+        <script>
+            function showFooterNav() {
+                $("#footNav").toggle();
+            }
+        </script>
+        <script src="~/Common/demo/js/jquery.min.js"></script>
+        <script src="~/Common/demo/js/jquery.cookie.js"></script>
+    </div>
+</body>
+</html>

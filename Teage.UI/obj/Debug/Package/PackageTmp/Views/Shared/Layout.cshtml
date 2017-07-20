@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Common/demo/css/style.css" rel="stylesheet" />
+    <link href="~/Common/demo/css/amazeui.min.css" rel="stylesheet" />
+    @*<link href="~/Common/demo/css/wap.css" rel="stylesheet" />
+    <script src="~/Common/demo/js/jquery.min.js"></script>
+    <script src="~/Common/demo/js/amazeui.min.js"></script>*@
+    @RenderSection("head", false)
+</head>
+<body>
+    <div>
+        @RenderBody()
+        <div class="pet_article_dowload pet_dowload_more_top_off" style="display:none;">
+            <div class="pet_article_dowload_title">关于Amaze UI</div>
+            <div class="pet_article_dowload_content pet_dowload_more_top_bg">
+                <div class="pet_article_dowload_triangle pet_dowload_more_top_san"></div>
+                <div class="pet_article_dowload_ico"><img src="~/Common/demo/img/footdon.png" alt=""></div>
+                <div class="pet_article_dowload_content_font">
+                    Amaze UI 以移动优先（Mobile first）为理念，从小屏逐步扩展到大屏，最终实现所有屏幕适配，适应移动互联潮流。
+                </div>
+                <div class="pet_article_dowload_all">
+                    <a href="###" class="pet_article_dowload_Az am-icon-apple"> App store</a>
+                    <a href="###" class="pet_article_dowload_Pg am-icon-android"> Android</a>
+                </div>
+            </div>
+            <div class="pet_article_footer_info">Copyright(c)2015 Amaze UI All Rights Reserved</div>
+        </div>
+        <!--底部-->
+        <div data-am-widget="navbar" class="am-navbar am-cf my-nav-footer" id="">
+            <ul class="am-navbar-nav am-cf am-avg-sm-4 my-footer-ul">
+                <li>
+                    <a href="/Main/Express/Index" class="">
+                        <span class="am-icon-home"></span>
+                        <span class="am-navbar-label">到了嘛</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Main/Send/Index" class="">
+                        <span class=" am-icon-map-marker"></span>
+                        <span class="am-navbar-label">寄了嘛</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="">
+                        <span class=" am-icon-comments"></span>
+                        <span class="am-navbar-label">聊天</span>
+                    </a>
+                </li>
+                <li style="position:relative">
+                    <a href="javascript:;" onclick="showFooterNav();" class="">
+                        <span class="am-icon-user"></span>
+                        <span class="am-navbar-label">会员</span>
+                    </a>
+                    <div class="footer-nav" id="footNav">
+                        <span class=" am-icon-bank"><a href="#">买家中心</a></span>
+                        <span class="am-icon-suitcase"><a href="#">卖家中心</a></span>
+                        <span class="am-icon-usd"><a href="#">我的钱包</a></span>
+                        <span class="am-icon-user"><a href="#">个人资料</a></span>
+                        <span class="am-icon-th-list"><a href="#">帮助中心</a></span>
+                        <span class="am-icon-comments"><a href="#">消息中心</a></span>
+                        <span class="am-icon-power-off"><a href="#">安全退出</a></span>
+                    </div>
+                </li>
+            </ul>
+            <script>
+                function showFooterNav() {
+                    $("#footNav").toggle();
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>

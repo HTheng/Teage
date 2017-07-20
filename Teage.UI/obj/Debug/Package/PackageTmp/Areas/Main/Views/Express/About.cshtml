@@ -1,0 +1,336 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>UD详情</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- Google Web Fonts -->
+
+    <link href="~/Common/mui/dist/css/sm.css" rel="stylesheet" />
+
+    <link href="~/Common/mui/dist/css/sm-extend.css" rel="stylesheet" />
+    <link href="~/Common/mui/docs/assets/css/demos.css" rel="stylesheet" />
+    @*<link href="~/Common/demo/css/amazeui.min.css" rel="stylesheet" />*@
+    <link href="~/Common/demo/css/wap.css" rel="stylesheet" />
+    <style>
+        a { text-decoration: none; }
+    </style>
+
+    <link rel="apple-touch-icon-precomposed" href="/assets/img/apple-touch-icon-114x114.png">
+    <script src="~/Common/mui/docs/assets/js/zepto.js"></script>
+    <script src="~/Common/mui/dist/js/sm.js"></script>
+    <script src="~/Common/layer/layer_mobile/layer.js"></script>
+    <script src="~/Common/Js/Extjs/angular.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var flag = '@ViewBag.Flag';
+            var type = '@ViewBag.Type';
+            if (flag == "1") {
+                $("#sq").css("display", "block");
+                $("#qx").css("display", "none");
+                $("#gb").css("display", "none");
+            }
+            else if (flag == "2") {
+                if (type == "3") {
+                    $("#sq").css("display", "none");
+                    $("#qx").css("display", "none");
+                    $("#gb").css("display", "none");
+                }
+                else {
+                    $("#sq").css("display", "none");
+                    $("#qx").css("display", "none");
+                    $("#gb").css("display", "block");
+                }
+
+            }
+            else if (flag == "3") {
+                if (type == "3") {
+                    $("#sq").css("display", "none");
+                    $("#qx").css("display", "none");
+                    $("#gb").css("display", "none");
+                }
+                else {
+                    $("#sq").css("display", "none");
+                    $("#qx").css("display", "block");
+                    $("#gb").css("display", "none");
+                }
+            }
+        });
+        @*function initMian() {
+            var flag = '@ViewBag.Flag';
+            var type = '@ViewBag.Type';
+            if (flag == "1") {
+                $("#sq").css("display", "block");
+                $("#qx").css("display", "none");
+                $("#gb").css("display", "none");
+            }
+            else if (flag == "2") {
+                if (type == "3") {
+                    $("#sq").css("display", "none");
+                    $("#qx").css("display", "none");
+                    $("#gb").css("display", "none");
+                }
+                else {
+                    $("#sq").css("display", "none");
+                    $("#qx").css("display", "none");
+                    $("#gb").css("display", "block");
+                }
+
+            }
+            else if (flag == "3") {
+                if (type == "3") {
+                    $("#sq").css("display", "none");
+                    $("#qx").css("display", "none");
+                    $("#gb").css("display", "none");
+                }
+                else {
+                    $("#sq").css("display", "none");
+                    $("#qx").css("display", "block");
+                    $("#gb").css("display", "none");
+                }
+            }
+            DO();
+        }*@
+        function Submit() {
+            Exist();
+            Ajax();
+        }
+        function Cancel() {
+            Exist();
+            Update(-1);
+        }
+        function Firm() {
+            Exist();
+            Update(2);
+        }
+        function Close() {
+            Exist();
+            Update(3);
+        }
+        function Exist() {
+            var token = $.cookie('Token');
+            $("#Token").val(token);
+            if (token == "" || token == undefined) {
+                layer.open({
+                    content: '请先登录！',
+                    height: 30,
+                    btn: '确定',
+                    shadeClose: false,
+                    yes: function () {
+                        window.location.href = "/Login/Index";
+                    }
+                });
+            }
+        }
+        function Update(flag) {
+            $.ajax({
+                url: "@ViewBag.api/api/Express/Express/Update",
+                type: "post",
+                dataType: 'json',
+                data: { Token: $("#Token").val(), ID: '@ViewBag.Id', Flag: flag },
+                success: function (data) {
+                    if (data.Meta.ErrorCode == "5" || data.Meta.ErrorCode == "7" || data.Meta.ErrorCode == "8") {
+                        layer.open({
+                            content: data.Meta.ErrorMsg,
+                            height: 30,
+                            btn: '确定',
+                            shadeClose: false,
+                            yes: function () {
+                                window.location.href = "/Main/Express/Index";
+                            }
+                        });
+                    }
+                    else if (data.Meta.ErrorCode == "2") {
+                        layer.open({
+                            content: '请先登录！',
+                            height: 30,
+                            btn: '确定',
+                            shadeClose: false,
+                            yes: function () {
+                                window.location.href = "/Login/Index";
+                            }
+                        });
+                    }
+                    else {
+                        layer.open({
+                            content: data.Meta.ErrorMsg
+                           , skin: 'msg'
+                           , time: 2 //2秒后自动关闭
+                        });
+                        return false;
+                    }
+                }
+            });
+        }
+        function Ajax() {
+            $.ajax({
+                url: "@ViewBag.api/api/Express/Express/Edit",
+                type: "post",
+                dataType: 'json',
+                data: { Token: $("#Token").val(), ID: '@ViewBag.Id' },
+                success: function (data) {
+                    if (data.Meta.ErrorCode == "3") {
+                        layer.open({
+                            content: '申请成功！',
+                            height: 30,
+                            btn: '确定',
+                            shadeClose: false,
+                            yes: function () {
+                                window.location.href = "/Main/Express/Index";
+                            }
+                        });
+                    }
+                    else if (data.Meta.ErrorCode == "2") {
+                        layer.open({
+                            content: '请先登录！',
+                            height: 30,
+                            btn: '确定',
+                            shadeClose: false,
+                            yes: function () {
+                                window.location.href = "/Login/Index";
+                            }
+                        });
+                    }
+                    else {
+                        layer.open({
+                            content: data.Meta.ErrorMsg
+                           , skin: 'msg'
+                           , time: 2 //2秒后自动关闭
+                        });
+                        return false;
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="page-group">
+        <div class="page" id="page-index">
+            <header class="bar bar-nav">
+                <a class="button button-link button-nav pull-left back" href="/Main/Express/Index">
+                    <span class="icon icon-left"></span>
+                    返回
+                </a>
+                <h1 class="title">UD详情</h1>
+
+            </header>
+
+            <nav class="bar bar-tab">
+                <a class="tab-item external" href="/Home/Index">
+                    <span class="icon icon-home"></span>
+                    <span class="tab-label">优递</span>
+                </a>
+                <a class="tab-item external active" href="/Main/Express/Index">
+                    <span class="icon icon-star"></span>
+                    <span class="tab-label">任务</span>
+                </a>
+                <a class="tab-item external" href="#">
+                    <span class="icon icon-message"></span>
+                    <span class="tab-label">好友</span>
+                    <span class="badge">2</span>
+                </a>
+                <a class="tab-item external open-panel" data-panel=".panel-left">
+                    <span class="icon icon-me"></span>
+                    <span class="tab-label">我的</span>
+                </a>
+            </nav>
+            <div ng-app="myApp" ng-controller="myCtrl">
+                <div class="pet_content">
+                    <div class="pet_content_block pet_hd_con">
+                        <article data-am-widget="paragraph" class="am-paragraph am-paragraph-default pet_content_article" data-am-paragraph="{ tableScrollable: true, pureview: true }">
+                            <h1 class="pet_article_title">{{Info.ExpressName}}</h1>
+                            <div class="pet_article_user_time pet_hd_con_time"><i class="iconfont">&#xe617;</i>{{Info.ExpectTime}}</div>
+                            <div class="pet_article_user_time pet_hd_con_map"><i class="iconfont">&#xe632;</i>{{Info.Destination}}</div>
+                            <div class="pet_article_user_time pet_hd_con_map"><i class="iconfont">&#xe615;</i>限额：1 人</div>
+                            <div class="pet_hd_con_gp">
+                                <div class="pet_hd_con_gp_title">立即申请</div>
+                                <div class="pet_hd_con_gp_list">
+                                    <span class="pet_hd_con_gp_list_on"><i>￥{{Info.Money}}</i>优递费用</span>
+                                    <div class="pet_hd_con_gp_list_sm"><i>￥700 VIP</i> - 说明：10.26-10.28三天参会资格，10.25-10.27三晚住宿(房型：双人间)，会议期间免费早中晚餐(不含10.28晚餐)，会议期间免费穿梭巴士服务，参会资料，大会精美礼品</div>
+                                </div>
+                                <input type="hidden" name="Token" id="Token" value="" />
+                                <div id="sq" style="display:none;">
+                                    <button class="pet_hd_con_gp_list_xl_m" onclick="Submit()">立即申请</button>
+                                </div>
+                                <div id="qx" style="display:none;">
+                                    <button class="pet_hd_con_gp_list_xl_r" onclick="Cancel()">取消订单</button>
+                                    <button class="pet_hd_con_gp_list_xl_g" onclick="Firm()">确认送达</button>
+                                </div>
+                                <div id="gb" style="display:none;">
+                                    <button class="pet_hd_con_gp_list_xl_gb" onclick="Close()">关闭订单</button>
+                                </div>
+                            </div>
+                        </article>
+                        <ul class="like_share_block">
+                            <li><a class="link_share_button" href="###"><i class="iconfont share_ico_link">&#xe62f;</i>100</a></li>
+                            <li><a class="link_share_button" href="###"><i class="iconfont share_ico_wx">&#xe630;</i>微信</a></li>
+                            <li><a class="link_share_button" href="###"><i class="iconfont share_ico_pyq">&#xe62e;</i>朋友圈</a></li>
+                        </ul>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel-overlay"></div>
+        <!-- Left Panel with Reveal effect -->
+        <div class="panel panel-left panel-reveal">
+            <div class="content-block">
+                <p style="padding-right: 5px; margin-top: 10px;"><a href="#" class="close-panel" style="color: #0e90d2">关闭</a></p>
+                <div align="center">
+                    <img src="~/Common/mui/img/i-f7.png" width="80" height="80" />
+                </div>
+                <p style="text-align: center; color: #f3f3f5; font-family: '黑体'; height: 4px; margin-top: 15px;">张三</p>
+                <p style="text-align: center; margin-top: 5px; height: 4px; ">137505515158</p>
+                <div style="color: #f3f3f5; font-family: '黑体'; ">
+                    <ul>
+                        <li class="icon icon-home" style="margin-left:35px;margin-top:20px;">&nbsp;&nbsp;<a href="/Main/User/Index">个人主页</a></li>
+                        <li class="icon icon-me" style="margin-left: 35px; margin-top: 20px; ">&nbsp;&nbsp;<a href="/Main/User/Identity">身份认证</a></li>
+                        <li class="icon icon-share" style="margin-left: 35px; margin-top: 20px; ">&nbsp;&nbsp;<a href="/Main/User/Money">零&nbsp;&nbsp;钱</a></li>
+                        <li class="icon icon-settings" style="margin-left: 35px; margin-top: 20px; ">&nbsp;&nbsp;<a href="/Main/User/Setting">设&nbsp;&nbsp;置</a></li>
+                    </ul>
+                </div>
+                <p style="position:absolute;bottom:10px;text-align:center;width:87%;font-size:25px;"><a onclick="CheckOut()" style="color: #6d6d72;">退出</a></p>
+            </div>
+        </div>
+        <script>
+            var app = angular.module('myApp', []);
+            app.controller('myCtrl', function ($scope, $http) {
+                $http({
+                    method: 'GET',
+                    url: '@ViewBag.api/api/Express/Express/About?ID=@ViewBag.Id',
+                }).success(function (response) {
+                    $scope.Info = eval('(' + response.Body + ')');
+                    $scope.Info.ExpressName = $scope.Info[0].ExpressName;
+                    $scope.Info.ExpectTime = $scope.Info[0].ExpectTime;
+                    $scope.Info.Destination = $scope.Info[0].Destination;
+                    $scope.Info.Money = $scope.Info[0].Money;
+                });
+            });
+        </script>
+        <script src="~/Common/mui/dist/js/sm.js"></script>
+        <script src="~/Common/mui/dist/js/sm-extend.js"></script>
+        <script src="~/Common/mui/dist/js/sm-city-picker.js"></script>
+        <script src="~/Common/mui/docs/assets/js/demos.js"></script>
+        <script src="~/Common/demo/js/jquery.min.js"></script>
+        <script src="~/Common/demo/js/jquery.cookie.js"></script>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+﻿<Properties StartupConfiguration="{0D792CB1-FD96-44EE-ACBC-C074B74C8C19}|">
+  <MonoDevelop.Ide.ItemProperties.1-Show.Teage.UI PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Teage.UI/Global.asax.cs">
+    <Files>
+      <File FileName="Teage.UI/Controllers/HomeController.cs" Line="23" Column="23" />
+      <File FileName="Teage.UI/Views/Home/Error.cshtml" Line="4" Column="2" />
+      <File FileName="Teage.UI/Views/Home/Index.cshtml" Line="15" Column="28" />
+      <File FileName="Teage.UI/Views/Shared/DetailLayout.cshtml" Line="12" Column="5" />
+      <File FileName="Teage.UI/Areas/Main/Views/Express/About.cshtml" Line="85" Column="14" />
+      <File FileName="Teage.UI/Areas/Main/Views/Express/Index.cshtml" Line="28" Column="15" />
+      <File FileName="Teage.UI/Areas/Main/Views/Users/Index.cshtml" Line="8" Column="8" />
+      <File FileName="Teage.UI/Areas/Main/Controllers/UsersController.cs" Line="16" Column="10" />
+      <File FileName="Teage.UI/Areas/Main/Views/Users/Reg.cshtml" Line="1" Column="1" />
+      <File FileName="Teage.UI/Global.asax.cs" Line="49" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

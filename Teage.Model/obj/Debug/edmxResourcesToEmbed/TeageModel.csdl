@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TeageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Captcha">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Substance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ExpressId" Type="Int32" Nullable="false" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+    <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Comment_Users" FromRole="Comment" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Express">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AddressID" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="Money" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ExpectTime" Type="DateTime" Precision="3" />
+    <Property Name="Destination" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HamalUserID" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="ReleaseTime" Type="DateTime" Precision="3" />
+    <Property Name="TypeID" Type="Int32" Nullable="false" />
+    <Property Name="ExpressName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ExpressPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Zy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Payway" Type="Int32" Nullable="false" />
+    <Property Name="ArrivalTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ExpressType" Relationship="Self.FK_Express_ExpressType" FromRole="Express" ToRole="ExpressType" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Express_Users" FromRole="Express" ToRole="Users" />
+    <NavigationProperty Name="ExpressCal" Relationship="Self.FK_ExpressCal_Express" FromRole="Express" ToRole="ExpressCal" />
+    <Property Name="PickDestination" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ExpressCal">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartTime" Type="DateTime" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Precision="3" />
+    <Property Name="Zy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ExpressID" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Express" Relationship="Self.FK_ExpressCal_Express" FromRole="ExpressCal" ToRole="Express" />
+  </EntityType>
+  <EntityType Name="ExpressType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Express" Relationship="Self.FK_Express_ExpressType" FromRole="ExpressType" ToRole="Express" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPass" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RegTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Email" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserInfoRole">
+    <Key>
+      <PropertyRef Name="UserInfo_ID" />
+      <PropertyRef Name="Role_ID" />
+    </Key>
+    <Property Name="UserInfo_ID" Type="Int32" Nullable="false" />
+    <Property Name="Role_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LoginPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Icon" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AddressId" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="Mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="vMoney" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ParentID" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="RegTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserStateId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Comment" Relationship="Self.FK_Comment_Users" FromRole="Users" ToRole="Comment" />
+    <NavigationProperty Name="Express" Relationship="Self.FK_Express_Users" FromRole="Users" ToRole="Express" />
+    <NavigationProperty Name="UserStates" Relationship="Self.FK_Users_UserStates" FromRole="Users" ToRole="UserStates" />
+    <NavigationProperty Name="UsersAddress" Relationship="Self.FK_UsersAddress_Users" FromRole="Users" ToRole="UsersAddress" />
+  </EntityType>
+  <EntityType Name="UsersAddress">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_UsersAddress_Users" FromRole="UsersAddress" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="UserStates">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_UserStates" FromRole="UserStates" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK_Comment_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Express_ExpressType">
+    <End Role="ExpressType" Type="Self.ExpressType" Multiplicity="1" />
+    <End Role="Express" Type="Self.Express" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExpressType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Express">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Express_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Express" Type="Self.Express" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Express">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExpressCal_Express">
+    <End Role="Express" Type="Self.Express" Multiplicity="1" />
+    <End Role="ExpressCal" Type="Self.ExpressCal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Express">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ExpressCal">
+        <PropertyRef Name="ExpressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_UserStates">
+    <End Role="UserStates" Type="Self.UserStates" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserStates">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="UserStateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersAddress_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UsersAddress" Type="Self.UsersAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UsersAddress">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TeageEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Captcha" EntityType="Self.Captcha" />
+    <EntitySet Name="Comment" EntityType="Self.Comment" />
+    <EntitySet Name="Express" EntityType="Self.Express" />
+    <EntitySet Name="ExpressCal" EntityType="Self.ExpressCal" />
+    <EntitySet Name="ExpressType" EntityType="Self.ExpressType" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="UserInfo" EntityType="Self.UserInfo" />
+    <EntitySet Name="UserInfoRole" EntityType="Self.UserInfoRole" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="UsersAddress" EntityType="Self.UsersAddress" />
+    <EntitySet Name="UserStates" EntityType="Self.UserStates" />
+    <AssociationSet Name="FK_Comment_Users" Association="Self.FK_Comment_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Express_ExpressType" Association="Self.FK_Express_ExpressType">
+      <End Role="ExpressType" EntitySet="ExpressType" />
+      <End Role="Express" EntitySet="Express" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Express_Users" Association="Self.FK_Express_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Express" EntitySet="Express" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExpressCal_Express" Association="Self.FK_ExpressCal_Express">
+      <End Role="Express" EntitySet="Express" />
+      <End Role="ExpressCal" EntitySet="ExpressCal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_UserStates" Association="Self.FK_Users_UserStates">
+      <End Role="UserStates" EntitySet="UserStates" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersAddress_Users" Association="Self.FK_UsersAddress_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersAddress" EntitySet="UsersAddress" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

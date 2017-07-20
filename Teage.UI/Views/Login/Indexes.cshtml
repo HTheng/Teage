@@ -1,0 +1,138 @@
+﻿@{
+    ViewBag.Title = "用户登录";
+    Layout = null;
+}
+@section head{
+    <link href="~/Common/demo/css/amazeuione.min.css" rel="stylesheet" />
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Indexs</title>
+    <link href="~/Common/demo/css/amazeuione.min.css" rel="stylesheet" />
+    <link href="~/Common/demo/css/style.css" rel="stylesheet" />
+    <script src="~/Common/demo/js/jquery.min.js"></script>
+    <script src="~/Common/demo/js/amazeui.min.js"></script>
+    <script src="~/Common/demo/js/jquery.cookie.js"></script>
+    <script src="~/Common/layer/layer_mobile/layer.js"></script>
+    <script type="text/javascript">
+        $("body").keydown(function (event) {
+            if (event.keyCode == "13") {//keyCode=13是回车键
+                $('#loginBtn').click();
+            }
+        });
+        function Submit() {
+            var flag = check();
+            if (flag) {
+                $.ajax({
+                    url: "@ViewBag.api/api/Users/User/Login",
+                    type: "post",
+                    dataType: 'json',
+                    //data: $("#addFrm").serialize(),
+                    data: { Phone: $("#name").val(), Captcha: $("#pwd").val() },
+                    success: function (data) {
+                        if (data.Meta.ErrorMsg == "success" || data.Meta.ErrorMsg == null) {
+                            $.cookie("Token", data.Body.Token, { expires: 7, path: '/' });
+                            var url = '@ViewBag.Url';
+                            if (url != "" && url != "/Login/Index") {
+                                window.location.href = url;
+                            }
+                            else {
+                                window.location.href = "/Home/Index";
+                            }
+                        } else {
+                            alert(data.Meta.ErrorMsg);
+                        }
+                    }
+                });
+            }
+        }
+        //校验数据
+        function check() {
+            if ($("#name").val() == "" || $("#name").val() == null) {
+                layer.open({
+                    content: '请输入您的用户名'
+                    , skin: 'msg'
+                    , time: 2 //2秒后自动关闭
+                });
+                return false;
+            }
+            if ($("#pwd").val() == "" || $("#pwd").val() == null) {
+                layer.open({
+                    content: '请输入您的验证码'
+                   , skin: 'msg'
+                   , time: 2 //2秒后自动关闭
+                });
+                return false;
+            }
+            return true;
+        }
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header data-am-widget="header" class="am-header am-header-default my-header">
+            <div class="am-header-left am-header-nav">
+                <a href="#left-link" class="">
+                    <i class="am-header-icon am-icon-chevron-left"></i>
+                </a>
+            </div>
+            <h1 class="am-header-title">
+                <a href="#title-link" class="">用户登录</a>
+            </h1>
+            <div class="am-header-right am-header-nav">
+                <a href="#right-link" class="">
+                    <i class="am-header-icon  am-icon-home"></i>
+                </a>
+            </div>
+        </header>
+        <div class="cart-panel">
+            <div class="am-form-group am-form-icon">
+                <i class="am-icon-phone" style="color:#f09513"></i>
+                <input id="name" type="text" class="am-form-field  my-radius" placeholder="11位手机号码">
+            </div>
+            <div class="am-form-group am-form-icon">
+                <i class="am-icon-envelope" style="color:#78c3ca"></i>
+                <input id="pwd" name="Captcha" class="am-form-field  my-radius" type="text" placeholder="4位短信验证码">
+            </div>
+            <div>
+                <div id="verificationcode" style="color:#9bc13c;text-align:right;">
+                    发送验证码
+                </div>
+            </div>
+            <p class="am-text-center"><button id="loginBtn" type="submit" class="am-btn am-btn-danger am-radius am-btn-block" onclick="Submit()">立即登录</button></p>
+            <script type="text/javascript">
+                //15分钟内不能重复发验证码
+                var time = 0;
+                //单击验证码事件
+                $("#verificationcode").click(function () {
+                    $.post("@ViewBag.api/api/Captcha/Captcha/SendCaptcha", { "Type": 3, "Phone": $("#name").val() }, function (data) {
+                        if (data.Meta.ErrorCode == "") {
+                            document.getElementById('verificationcode').style.color == "block";
+                            time = 15;
+                        } else {
+                            layer.open({
+                                content: data.Meta.ErrorMsg,
+                                skin: 'msg' ,
+                                time: 2
+                            });
+                            return false;
+                        }
+                    });
+                });
+            </script>
+        </div>
+        <footer data-am-widget="footer" class="am-footer am-footer-default" data-am-footer="{  }">
+            <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+            <div class="am-footer-miscs ">
+                <p>CopyRight©2014 AllMobilize Inc.</p>
+                <p>京ICP备13033158</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

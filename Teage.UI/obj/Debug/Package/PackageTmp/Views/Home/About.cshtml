@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/LayoutMaster.cshtml";
+}
+@section head{
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1431676360_347254.css">
+<link href="~/Common/mui/dist/css/sm.css" rel="stylesheet" />
+<link href="~/Common/mui/dist/css/sm-extend.css" rel="stylesheet" />
+<link href="~/Common/mui/docs/assets/css/docs.css" rel="stylesheet" />
+<script src="~/Common/mui/docs/assets/js/zepto.js"></script>
+
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/img/apple-touch-icon-114x114.png">
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?ba76f8230db5f616edc89ce066670710";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    function on(type) {
+        if (type == 1) {
+            $("#tab1").css("display", "block");
+            $("#tab2").css("display", "none");
+            $("#tab3").css("display", "none");
+        }
+        else if (type == 2) {
+            $("#tab1").css("display", "none");
+            $("#tab2").css("display", "block");
+            $("#tab3").css("display", "none");
+        }
+        else if (type == 3) {
+            $("#tab1").css("display", "none");
+            $("#tab2").css("display", "none");
+            $("#tab3").css("display", "block");
+        }
+    }
+</script>
+}
+
+<header class="bar bar-nav">
+    <h1 class='title'>标签页</h1>
+</header>
+<div class="content">
+    <br />
+    <br />
+    <br />
+    <div class="buttons-tab">
+        <a href="#tab1" onclick="on(1)" class="tab-link active button">全部</a>
+        <a href="#tab2" onclick="on(2)" class=" tab-link button">待付款</a>
+        <a href="#tab3" onclick="on(3)" class=" tab-link button">待发货</a>
+    </div>
+    <div class="content-block">
+        <div class="tabs">
+            <div id="tab1" class="tab active">
+                <div class="content-block">
+                    <p>This is tab 1 content</p>
+                </div>
+            </div>
+            <div id="tab2" class="tab">
+                <div class="content-block">
+                    <p>This is tab 2 content</p>
+                </div>
+            </div>
+            <div id="tab3" class="tab">
+                <div class="content-block">
+                    <p>This is tab 3 content</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

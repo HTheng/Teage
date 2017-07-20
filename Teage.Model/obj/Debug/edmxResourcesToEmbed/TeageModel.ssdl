@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TeageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Captcha">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="11" Nullable="false" />
+    <Property Name="Value" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateTime" Type="datetime" />
+    <Property Name="Type" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="Substance" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ExpressId" Type="int" Nullable="false" />
+    <Property Name="State" Type="int" Nullable="false" />
+    <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Express">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="AddressID" Type="nvarchar" MaxLength="32" />
+    <Property Name="Money" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ExpectTime" Type="datetime" />
+    <Property Name="Destination" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="HamalUserID" Type="nvarchar" MaxLength="32" />
+    <Property Name="ReleaseTime" Type="datetime" />
+    <Property Name="TypeID" Type="int" Nullable="false" />
+    <Property Name="ExpressName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="PickDestination" Type="nvarchar" MaxLength="200" />
+    <Property Name="ExpressPwd" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="11" Nullable="false" />
+    <Property Name="Zy" Type="nvarchar" MaxLength="500" />
+    <Property Name="Payway" Type="int" Nullable="false" />
+    <Property Name="ArrivalTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ExpressCal">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="StartTime" Type="datetime" />
+    <Property Name="EndTime" Type="datetime" />
+    <Property Name="Zy" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="ExpressID" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ExpressType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="UserPass" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="RegTime" Type="datetime" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserInfoRole">
+    <Key>
+      <PropertyRef Name="UserInfo_ID" />
+      <PropertyRef Name="Role_ID" />
+    </Key>
+    <Property Name="UserInfo_ID" Type="int" Nullable="false" />
+    <Property Name="Role_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="LoginName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LoginPwd" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Icon" Type="nvarchar" MaxLength="200" />
+    <Property Name="AddressId" Type="nvarchar" MaxLength="32" />
+    <Property Name="Mail" Type="nvarchar" MaxLength="100" />
+    <Property Name="vMoney" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ParentID" Type="nvarchar" MaxLength="32" />
+    <Property Name="RegTime" Type="datetime" Nullable="false" />
+    <Property Name="UserStateId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UsersAddress">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="State" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserStates">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Comment_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Express_ExpressType">
+    <End Role="ExpressType" Type="Self.ExpressType" Multiplicity="1" />
+    <End Role="Express" Type="Self.Express" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExpressType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Express">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Express_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Express" Type="Self.Express" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Express">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExpressCal_Express">
+    <End Role="Express" Type="Self.Express" Multiplicity="1" />
+    <End Role="ExpressCal" Type="Self.ExpressCal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Express">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ExpressCal">
+        <PropertyRef Name="ExpressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_UserStates">
+    <End Role="UserStates" Type="Self.UserStates" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserStates">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="UserStateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersAddress_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UsersAddress" Type="Self.UsersAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UsersAddress">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TeageModelStoreContainer">
+    <EntitySet Name="Captcha" EntityType="Self.Captcha" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Express" EntityType="Self.Express" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExpressCal" EntityType="Self.ExpressCal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExpressType" EntityType="Self.ExpressType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserInfoRole" EntityType="Self.UserInfoRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersAddress" EntityType="Self.UsersAddress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserStates" EntityType="Self.UserStates" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Comment_Users" Association="Self.FK_Comment_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Express_ExpressType" Association="Self.FK_Express_ExpressType">
+      <End Role="ExpressType" EntitySet="ExpressType" />
+      <End Role="Express" EntitySet="Express" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Express_Users" Association="Self.FK_Express_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Express" EntitySet="Express" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExpressCal_Express" Association="Self.FK_ExpressCal_Express">
+      <End Role="Express" EntitySet="Express" />
+      <End Role="ExpressCal" EntitySet="ExpressCal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_UserStates" Association="Self.FK_Users_UserStates">
+      <End Role="UserStates" EntitySet="UserStates" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersAddress_Users" Association="Self.FK_UsersAddress_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersAddress" EntitySet="UsersAddress" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
